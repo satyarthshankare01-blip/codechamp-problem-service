@@ -3,6 +3,8 @@ import {PORT} from "./config/server.config.js";
 import bodyParser from "body-parser"
 import { approuter } from "./routes/index.js";
 import { errorHandler } from "./utils/errorHandler.js";
+import { connectTODB } from "./config/db.config.js";
+
 
 const app =  express();
 
@@ -24,5 +26,7 @@ app.use(errorHandler)
 
 app.listen (PORT  , () => {
     console.log(`The server is listening on the PORT : ${PORT} `)
+    connectTODB();
+    console.log("successfully connected to the DATABASE")
 })
 

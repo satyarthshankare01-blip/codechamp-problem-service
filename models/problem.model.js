@@ -17,12 +17,11 @@ const problemschema = mongoose.Schema({
     testcases: [
         {
             input : {
-                type : String , 
-                required : true
+                type : String 
+            
             },
             output : {
-                type : String ,
-                required : true
+                type : String 
             }
         }
     ],
@@ -37,3 +36,4 @@ const problemschema = mongoose.Schema({
 const  Problem = mongoose.model( 'Problem' , problemschema );
 
 export { Problem } ;
+

@@ -1,11 +1,22 @@
 import { NotImplemented } from "../error/notImplemented.error.js";
+import { ProblemService } from "../services/problem.service.js";
+import { ProblemRepository } from "../repositories/problem.repository.js";
+import {StatusCodes } from "http-status-codes" ; 
 
+const problemService = new ProblemService( new ProblemRepository() );
 
-const  addProblem = ( req , res , next ) => {
+const  addProblem = async  ( req , res , next ) => {
     
     try{
-
-        throw new NotImplemented("addProblem")
+           
+       const newproblem = await problemService.createProblem(req.body);
+       return res.status(StatusCodes.CREATED).json({
+        success: true , 
+        message: "Successfully created a new problem ",
+        error : {} ,
+        data : newproblem
+       })
+        
     }
     catch(error){
         next(error)
@@ -13,11 +24,18 @@ const  addProblem = ( req , res , next ) => {
 };
 
 
-const  getProblems = ( req , res ,  next ) => {
+const  getProblems = async  ( req , res ,  next ) => {
 
     try{
-
-        throw new NotImplemented("getProblems")
+ 
+    const response  = await problemService.getAllProblems();
+    return res.status(StatusCodes.OK).json({
+    success: true ,
+    message: "successfully fetche all the problems",
+    error : {},
+    data : response
+    })
+  
     }
     catch(error){
         next(error)

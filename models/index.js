@@ -1,5 +1,5 @@
-import *  as Problemmodel from  "./problem.model.js"
-export { Problemmodel}
+import *  as Problem from  "./problem.model.js"
+export { Problem}
 
 
 
